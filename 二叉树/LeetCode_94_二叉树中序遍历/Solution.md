@@ -114,5 +114,63 @@ public:
 空间复杂度：O(n)。空间复杂度取决于栈深度，而栈深度在二叉树为一条链的情况下会达到 O(n) 的级别。
 
 
+## 解3：Morris遍历，将二叉树改造成线索二叉树
+```
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> res;
+        TreeNode *predecessor = nullptr;
+
+        while (root != nullptr) {
+            if (root->left != nullptr) {
+                // predecessor 节点就是当前 root 节点向左走一步，然后一直向右走至无法走为止
+                predecessor = root->left;
+                while (predecessor->right != nullptr && predecessor->right != root) {
+                    predecessor = predecessor->right;
+                }
+                
+                // 让 predecessor 的右指针指向 root，继续遍历左子树
+                if (predecessor->right == nullptr) {
+                    predecessor->right = root;
+                    root = root->left;
+                }
+                // 说明左子树已经访问完了，我们需要断开链接
+                else {
+                    res.push_back(root->val);
+                    predecessor->right = nullptr;
+                    root = root->right;
+                }
+            }
+            // 如果没有左孩子，则直接访问右孩子
+            else {
+                res.push_back(root->val);
+                root = root->right;
+            }
+        }
+        return res;
+    }
+};
+```
+## 步骤
+1. x无孩子</br>
+- res.push_back(root -> val) 就是叶结点的时候，将值加入
+- x = x->right 这是利用线索二叉树带的后继，走向这个叶节点的（线索）后继，也就是原先的根节点。
+2. x有孩子</br>
+- x节点的左子树最右边的结点predecessor 若为空，说明x的左子树还没遍历，并且x的predecessor还未进行线索到后继结点。因此predecessor->right = x进行线索，x = x->left向左子树迈进。
+- x节点的左子树最右边的结点predecessor 若不为空，说明x的左子树已遍历结束，将x加入到结果集中，即res.push_back(root->val)，并将x的线索断开predecessor->right = nullptr，这里向x的（原有的，不是线索）右节点进发，  root = root->right
+
+</br>
+其实整个过程我们就多做一步：假设当前遍历到的节点为 x，将 x 的左子树中最右边的节点的右孩子指向 xxx，这样在左子树遍历完成后我们通过这个指向走回了 x，且能通过这个指向知晓我们已经遍历完成了左子树，而不用再通过栈来维护，省去了栈的空间复杂度。
+
+
+
+## 复杂度
+时间复杂度：O(n)，其中 nnn 为二叉树的节点个数。Morris 遍历中每个节点会被访问两次，因此总时间复杂度为 O(2n)=O(n)。
+<br>
+空间复杂度：O(1)。
+
+
+
 
    
