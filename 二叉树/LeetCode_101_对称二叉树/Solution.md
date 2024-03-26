@@ -20,7 +20,8 @@
 树中节点数目在范围 [1, 1000] 内
 -100 <= Node.val <= 100
 
-# 代码
+# 解法1：递归
+## 代码
 ```
 /**
  * Definition for a binary tree node.
@@ -51,9 +52,54 @@ public:
     }
 };
 ```
-# 思路
+## 思路
 1. 其实这也是判断两个树是不是结构相等，值相等，请参考LeetCode100，只不过，现在变成一棵树。
 
-# 复杂度：
+## 复杂度：
 - 时间复杂度：这里遍历了这棵树，渐进时间复杂度为 O(n)。
 - 空间复杂度：这里的空间复杂度和递归使用的栈空间有关，这里递归层数不超过 n，故渐进空间复杂度为 O(n)。
+
+# 解法2：迭代
+## 代码
+```
+class Solution {
+public:
+
+    bool check(TreeNode *p, TreeNode *q){
+        queue<TreeNode*> queue;
+        queue.push(p);
+        queue.push(q);
+
+        while(!queue.empty()){
+            p = queue.front();queue.pop();
+            q = queue.front();queue.pop();
+            
+            if(p == nullptr && q == nullptr){
+                continue;
+            }
+            if(p == nullptr || q == nullptr){
+                return false;
+            }
+            if(p -> val != q -> val){
+                return false;
+            }
+            queue.push(p -> left);
+            queue.push(q -> right);
+
+            queue.push(p -> right);
+            queue.push(q -> left);
+
+        }
+        return true;
+    }
+
+    bool isSymmetric(TreeNode* root) {
+        return check(root,root);
+    }
+};
+```
+## 思想：
+没啥可说的，跟LeetCode100一样，现在只不过变成一个树。
+## 复杂度
+- 时间复杂度：O(n)，同「方法一」。
+- 空间复杂度：这里需要用一个队列来维护节点，每个节点最多进队一次，出队一次，队列中最多不会超过 n 个点，故渐进空间复杂度为 O(n)。
