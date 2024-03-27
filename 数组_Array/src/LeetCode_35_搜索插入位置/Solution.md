@@ -38,6 +38,7 @@ public:
         int j = nums.size()-1;
         int mid = 0;
         //刚刚这里出错了，写成了 i > j
+        //当i == j , 实际上是判断i=j的这个下标与 target的比较，这是必要的。
         while(i <=  j){
             mid = (i + j) / 2;
             if(nums[mid] == target){
