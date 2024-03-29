@@ -20,8 +20,8 @@
 
 树中节点数的范围在 [0, 105] 内
 -1000 <= Node.val <= 1000
-
-# 代码
+# 解法1：深度优先搜索
+## 代码
 ```
 /**
  * Definition for a binary tree node.
@@ -39,6 +39,7 @@ public:
 
     
     int minDepth(TreeNode* root) {
+        //叶结点
         if(root == nullptr) return 0;
          //不是叶子结点的时候不能返回0，因此要控制走向时，不要让他们向着空结点方向走（之前写代码这里出错了）
         if(root -> right != nullptr && root -> left == nullptr){
@@ -49,18 +50,66 @@ public:
         }
 
         
-
+        //有左结点和右结点时
         return min(minDepth(root -> left),minDepth(root -> right)) + 1;
     }
 
 };
 ```
-# 思路
+## 思路
 这其实与树的高度是一样的，不过得分清楚情况。
 1. 是叶子结点时，返回0。
 2. 只有左结点和右结点时，向着不是空结点的方向行走。
 3. 与树的深度一样，返回每个分支的+1树的最小深度。
 
-# 复杂度
+## 复杂度
 - 时间复杂度：O（n），最多把所有的结点遍历一遍。
-- 空间复杂度：O（n）, 是树的高度，也就是最坏的情况下，是坏的情况下是成一竖列。
+- 空间复杂度：O（n）, 是树的高度，也就是最坏的情况下，是坏的情况下是成一竖列。平均情况下树的高度与节点数的对数正相关，空间复杂度为 O(logN)。
+
+# 广度优先搜索
+
+## 代码
+```
+class Solution {
+public:
+
+    
+    int minDepth(TreeNode* root) {
+        if(root == nullptr) return 0;
+
+        queue<TreeNode*> Q;
+        Q.push(root);
+        int ans = 1;
+        while(!Q.empty()){
+            int size = Q.size();
+            while(size > 0){
+                TreeNode* node = Q.front();Q.pop();
+                if(node -> left != nullptr && node -> right == nullptr){
+                    Q.push(node -> left);
+                }else if(node -> right != nullptr && node -> left == nullptr){
+                    Q.push(node -> right);
+                }else if(node -> left != nullptr && node -> right != nullptr){
+                    Q.push(node -> left);
+                    Q.push(node -> right);
+                }else{
+                    return ans;
+                }
+                size--;
+            }
+            ans++;
+        }
+        return 0;
+    }
+};
+```
+## 思路
+思路还是一样的，跟`树的高度`类似，我们求树的高度，然后当遇到`叶结点`的时候就是最小的深度。
+分四种情况，
+1. 无结点
+2. 只有左结点
+3. 只有右结点
+4. 有左结点和右结点
+
+# 复杂度
+- 时间复杂度：O(n)，最多遍历整个结点
+- 空间复杂度: O(n)，就是队列的空间大小，最多是n
