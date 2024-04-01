@@ -32,6 +32,7 @@
 # 代码
 ```
 //下面这段代码 超出时间限制
+//想法是：双层循环，找到每个数之后的最大值，然后相减。
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
