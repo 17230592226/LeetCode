@@ -54,3 +54,43 @@ public:
     
 };
 ```
+
+```
+//超出时间限制
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int max = 0;
+        int ans = 0;
+      // 这个是避免第一个值是最大值。与后面的(prices[i] == max)相对应。
+        for(int j = 0; j < prices.size() ; j++){
+                    if(prices[j] > max){
+                        max = prices[j];
+                }
+        }
+
+
+        for(int i = 0; i < prices.size() - 1 ; i++){
+            if(prices[i] == max ){
+                max = 0; //这里搞错了，选择最大值时，一定要设置max=0
+                for(int j = i + 1; j < prices.size() ; j++){
+                    if(prices[j] > max){
+                        max = prices[j];
+                    }
+                }
+            }
+            else{
+                int dif = max - prices[i];
+                    if(dif > ans){
+                        ans = dif;
+                    }
+            }
+        }
+        return ans;
+            
+
+           
+    }      
+    
+};
+```
