@@ -25,7 +25,7 @@ n == nums.length
 
 # 代码
 ```
-//冒泡排序，超出时间限制
+//冒泡排序，超出时间限制  想法：排序后，⌊n/2⌋的位置一定是众数
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
@@ -68,8 +68,49 @@ public:
 ```
 ## 复杂度
 - 时间复杂度：O(n)，其中 n 是数组 nums 的长度。我们遍历数组 nums 一次，对于 nums 中的每一个元素，将其插入哈希表都只需要常数时间。
-- 空间复杂度：O(n)。哈希表最多包含 n−⌊n2/2⌋ 个键值对，所以占用的空间为 O(n)。
+- 空间复杂度：O(n)。哈希表最多包含 n−⌊n/2⌋ 个键值对，所以占用的空间为 O(n)。
 
-​
+## 解法2：排序（这里与我写的代码想法类似，只不过不是冒泡）
+​```
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+       sort(nums.begin(),nums.end());
+       return nums[nums.size() / 2];
 
+    }
+
+};
+```
+## 复杂度
+- 时间复杂度：O(nlog⁡n)。将数组排序的时间复杂度为 O(nlog⁡n)。
+- 空间复杂度：空间复杂度：O(log⁡n)。如果使用语言自带的排序算法，需要使用 O(log⁡n) 的栈空间。如果自己编写堆排序，则只需要使用 O(1)的额外空间。
+
+
+
+## 解法3：随机数
+```
+//由于一个给定的下标对应的数字很有可能是众数，我们随机挑选一个下标，检查它是否是众数，如果是就返回，否则继续随机挑选
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+       while(true){
+        int candidate = nums[rand() % nums.size()];
+        int count = 0;
+        for(int num : nums){
+            if(num == candidate){
+                count++;
+            }
+        }
+        if(count > nums.size() / 2){
+            return candidate;
+        }
+       }
+    return -1;
+    }
+
+};
+```
+## 复杂度
+![image](https://github.com/17230592226/LeetCode/assets/57279736/bd72f5b2-b05d-4207-a3ff-d3cb861ae510)
 
