@@ -115,4 +115,26 @@ public:
 ## 复杂度
 ![image](https://github.com/17230592226/LeetCode/assets/57279736/bd72f5b2-b05d-4207-a3ff-d3cb861ae510)
 
+## 解法4：Boyer-Moore 投票算法： 如果我们把众数记为 +1，把其他数记为 −1，将它们全部加起来，显然和大于 0，从结果本身我们可以看出众数比其他数多。
+```
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+       int candidate = -1;
+       int count = 0;
 
+       for(int num : nums){
+        if(num == candidate) count++;
+        else if (count == 0){
+            candidate = num;
+            count = 1;
+        }
+       }
+       return candidate;
+    }
+
+};
+```
+## 复杂度
+- 时间复杂度：O(n)。Boyer-Moore 算法只对数组进行了一次遍历。
+- 空间复杂度：空间复杂度：O(1⁡n)。Boyer-Moore 算法只需要常数级别的额外空间。
