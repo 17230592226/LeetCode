@@ -71,7 +71,8 @@ public:
 - 空间复杂度：O(n)。哈希表最多包含 n−⌊n/2⌋ 个键值对，所以占用的空间为 O(n)。
 
 ## 解法2：排序（这里与我写的代码想法类似，只不过不是冒泡）
-​```
+​
+```
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
@@ -113,4 +114,5 @@ public:
 ```
 ## 复杂度
 ![image](https://github.com/17230592226/LeetCode/assets/57279736/bd72f5b2-b05d-4207-a3ff-d3cb861ae510)
+
 
