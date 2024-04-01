@@ -41,3 +41,22 @@ public:
 # 复杂度
 - 时间复杂度：O(n)
 - 空间复杂度：O(n)
+
+# 解法2：排序
+```
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        for(int i = 0; i < nums.size() - 1 ; i++ ){
+            if(nums[i] == nums[i+1]){
+                return true;
+            }
+        }
+        return false;
+    }
+};
+```
+# 复杂度
+- 时间复杂度：O(nlongn)
+- 空间复杂度：O(logn)
