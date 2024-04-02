@@ -35,7 +35,7 @@ nums 中的所有数字都 独一无二
 
 进阶：你能否实现线性时间复杂度、仅使用额外常数空间的算法解决此问题?
 
-# 代码
+# 解法1： 排序
 ```
 class Solution {
 public:
@@ -53,3 +53,67 @@ public:
 };
 ```
 ![image](https://github.com/17230592226/LeetCode/assets/57279736/5e7af5cb-e75b-4c90-a76b-da0ed9e376df)
+# 解法2：哈希
+```
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        unordered_set<int> set;
+        int n = nums.size();
+        for(int i =0 ;i < n ;i++){
+            set.insert(nums[i]);
+        }
+        int missing = -1;
+        for(int i = 0; i <= n;i++){
+            if(!set.count(i)){
+                missing = i;
+                break;
+            }
+        }
+        return missing;
+    }
+};
+```
+![image](https://github.com/17230592226/LeetCode/assets/57279736/b1a02a69-f5a7-49dd-a591-6cc994148c9d)
+# 解法3：位运算
+![image](https://github.com/17230592226/LeetCode/assets/57279736/4b90d4ff-af51-4357-8b3d-b61d26dc7e4e)
+
+```
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int res = 0;
+        int n = nums.size();
+        for(int i = 0; i < n;i++){
+            res ^= nums[i];
+        }
+        for(int i = 0;i <=n; i++){
+            res ^= i;
+        }
+        return res;
+    }
+};
+```
+![image](https://github.com/17230592226/LeetCode/assets/57279736/433a7386-ea73-44b7-8a7c-b82ca9715bcb)
+
+# 解法4：数学
+
+![image](https://github.com/17230592226/LeetCode/assets/57279736/b676835f-0258-43eb-a4c4-e2fb74834623)
+
+```
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int n = nums.size();
+        int total = n * (n+1) / 2;
+        int sum = 0;
+        for(int i = 0; i < n;i++){
+            sum = sum + nums[i];
+        }
+        return total - sum;
+    }
+};
+```
+![image](https://github.com/17230592226/LeetCode/assets/57279736/2dde327f-bb20-4a00-920b-f6dd2890e8cc)
+
+
