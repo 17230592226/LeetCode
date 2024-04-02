@@ -40,7 +40,7 @@ public:
         for(int num2 : nums2){
             map2[num2]++;
         }
-
+       //遍历  这个也可以  for(pair<const int,int>& kv:map){
         for(auto& kv : map1){
             if(map2.count(kv.first)){
                 for(int i = 0 ;i < min(map2[kv.first],map1[kv.first]);i++)
