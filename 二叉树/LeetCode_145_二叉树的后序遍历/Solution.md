@@ -73,3 +73,67 @@ public:
 # 复杂度
 - 时间复杂度：o(n);
 - 空间复杂度：O(n);
+
+# 解法3：Morris 遍历
+```
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
+ * right(right) {}
+ * };
+ */
+class Solution {
+public:
+    void addPath(vector<int>& vec, TreeNode* node) {
+        int count = 0;
+        while (node != nullptr) {
+            ++count;
+            vec.emplace_back(node->val);
+            node = node->right;
+        }
+        reverse(vec.end() - count, vec.end());
+    }
+
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> res;
+        
+        TreeNode *p = root, *pre = nullptr;
+
+        while (root != nullptr) {
+            if (root->left != nullptr) {
+                pre = root->left;
+                if (pre != nullptr) {
+                    while (pre->right != nullptr && pre->right != root) {
+                        pre = pre->right;
+                    }
+                    if (pre->right == nullptr) {
+                        pre->right = root;
+                        root = root->left;
+                        continue;
+                    } else {
+                        pre->right = nullptr;
+                        addPath(res, root->left);
+                        root = root->right;
+                    }
+                }
+            }
+            else{
+                 root = root->right;
+            }
+           
+        }
+        addPath(res, p);
+        return res;
+    }
+};
+
+```
+# 复杂度
+- 时间复杂度：o(n);
+- 空间复杂度：O(1);
