@@ -51,6 +51,8 @@ public:
             }
             root = stk.top();
             stk.pop();
+            //与中序相比，遍历和向右走的情况不相同，它是退回到根节点后继续再向右走，代码下面的不同
+            
             //root->right == nullptr 是遇到叶结点时。
             //root->right == prev是（左右根）的右 - 根，回退到根结点时
             if (root->right == nullptr || root->right == prev) {
