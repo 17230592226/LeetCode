@@ -75,6 +75,10 @@ public:
 - 空间复杂度：O(n);
 
 # 解法3：Morris 遍历
+
+
+![image](https://github.com/17230592226/LeetCode/assets/57279736/5412962a-8e01-446d-80e5-ff1ce1edcc64)
+
 ```
 /**
  * Definition for a binary tree node.
@@ -91,7 +95,7 @@ public:
 class Solution {
 public:
 //与中序还有先序相比，他们的遍历就遍历的点不一样。
-//这里是新加入的方法
+//这里是新加入的方法，这个代码调用这个方法就是让上图中标注的1，2，3，4进行遍历。
     void addPath(vector<int>& vec, TreeNode* node) {
         int count = 0;
         while (node != nullptr) {
@@ -120,6 +124,7 @@ public:
                         continue;
                     } else {
                         pre->right = nullptr;
+                        //这里与中序遍历不同，多了addPath(res, root->left);，少了一个res.push_back(root -> val)。
                         addPath(res, root->left);
                         root = root->right;
                     }
@@ -130,6 +135,7 @@ public:
             }
            
         }
+        //这里与中序遍历不同，多了 addPath(res, p);，这是途中标注4，最后一次遍历翻转，从root开始遍历反转。这里的root就是p
         addPath(res, p);
         return res;
     }
