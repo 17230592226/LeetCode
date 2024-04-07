@@ -89,13 +89,13 @@ public:
                 // 让 predecessor 的右指针指向 root，继续遍历左子树
                 if (predecessor->right == nullptr) {
                     predecessor->right = root;
-                    //这里与先序遍历不同，多了res.push_back(root->val);
+                    //这里与中序遍历不同，多了res.push_back(root->val);
                     res.push_back(root->val);
                     root = root->left;
                 }
                 // 说明左子树已经访问完了，我们需要断开链接
                 else {
-                    //这里与先序遍历不同，少了res.push_back(root->val);
+                    //这里与中序遍历不同，少了res.push_back(root->val);
                     predecessor->right = nullptr;
                     root = root->right;
                 }
