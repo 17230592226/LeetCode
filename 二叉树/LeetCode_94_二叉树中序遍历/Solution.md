@@ -90,6 +90,7 @@ public:
 
         while(root != nullptr || !stk.empty()){
             while(root != nullptr){
+                //下面两行代码遍历完，意思是记录root前的根结点
                 stk.push(root);
                 root = root -> left;
             }
