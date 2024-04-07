@@ -90,6 +90,8 @@ public:
  */
 class Solution {
 public:
+//与中序还有先序相比，他们的遍历就遍历的点不一样。
+//这里是新加入的方法
     void addPath(vector<int>& vec, TreeNode* node) {
         int count = 0;
         while (node != nullptr) {
