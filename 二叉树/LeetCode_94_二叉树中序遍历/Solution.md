@@ -85,6 +85,7 @@ class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> res;
+        //所有的栈只是为了记录根结点，以方便遍历当前结点的右节点
         stack<TreeNode*> stk;
 
         while(root != nullptr || !stk.empty()){
