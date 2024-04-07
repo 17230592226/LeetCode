@@ -32,7 +32,39 @@ public:
         return v;
     }
 };
+```
 # 复杂度
 - 时间复杂度：遍历缩点O(n)
 - 空间复杂度；所使用栈的大小，即最坏情况下为O(n)
+
+# 解法2：迭代
 ```
+class Solution {
+public:
+
+
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> res;
+        stack<TreeNode*> stk;
+        //加入root != nullptr 防止类似[1,null,2,3]作为输入的情况。
+        while(root != nullptr || !stk.empty()){
+            while(root != nullptr){
+                //与中序遍历唯一不同的是res.push_back(root -> val);遍历的读取是在这里
+                res.push_back(root -> val);
+                stk.push(root);
+                root = root -> left;
+            }
+            root = stk.top();
+            //中序遍历的res.push_back(root -> val);是在这里。他么在栈中的走动顺序是一样的，只不过读取的顺序不一样。
+            stk.pop(); 
+            root = root -> right;
+        }
+        return res;
+    }
+    
+};
+```
+# 复杂度
+- 时间复杂度：遍历缩点O(n)
+- 空间复杂度；所使用栈的大小，即最坏情况下为O(n)
+  
