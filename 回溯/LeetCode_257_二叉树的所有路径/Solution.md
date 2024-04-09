@@ -18,6 +18,7 @@
 
 树中节点的数目在范围 [1, 100] 内
 -100 <= Node.val <= 100
+
 # 解法1：深度，利用先序遍历，遍历过程中加入字符串进行回溯
 ```
 /**
@@ -33,7 +34,7 @@
  */
 class Solution {
 public:
-    //注意：相对于前序遍历，程序的编写的顺序，
+    //注意：相对于前序遍历，程序的编写的顺序值得注意。
     void xianxu(TreeNode* root ,string s, vector<string>& v){
         if(root == nullptr) {
             return;
@@ -56,5 +57,50 @@ public:
     }
 };
 ```
-# 时间复杂度
-![image](https://github.com/17230592226/LeetCode/assets/57279736/e515ac3a-ea6f-48d4-a7b3-d14628ee1b3b)
+
+# 复杂度
+![image](https://github.com/17230592226/LeetCode/assets/57279736/34525875-32f3-48b1-9a6a-69bd6a9c714c)
+
+
+# 解法2： 广度优先
+```
+class Solution {
+public:
+    vector<string> binaryTreePaths(TreeNode* root) {
+        vector<string> paths;
+        if (root == nullptr) {
+            return paths;
+        }
+        queue<TreeNode*> node_queue;
+        queue<string> path_queue;
+
+        node_queue.push(root);
+        path_queue.push(to_string(root->val));
+
+        while (!node_queue.empty()) {
+            TreeNode* node = node_queue.front(); 
+            string path = path_queue.front();
+            node_queue.pop();
+            path_queue.pop();
+
+            if (node->left == nullptr && node->right == nullptr) {
+                paths.push_back(path);
+            } else {
+                if (node->left != nullptr) {
+                    node_queue.push(node->left);
+                    path_queue.push(path + "->" + to_string(node->left->val));
+                }
+
+                if (node->right != nullptr) {
+                    node_queue.push(node->right);
+                    path_queue.push(path + "->" + to_string(node->right->val));
+                }
+            }
+        }
+        return paths;
+    }
+};
+```
+# 复杂度
+
+![image](https://github.com/17230592226/LeetCode/assets/57279736/cc08df80-29ad-4a34-9adf-9ecd5207eda7)
