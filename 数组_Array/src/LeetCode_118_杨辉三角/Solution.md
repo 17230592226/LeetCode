@@ -32,3 +32,19 @@ public:
 # 复杂度：
 - 时间复杂度：时间复杂度：O(numRows^2)
 - 空间复杂度：O(1)。不考虑返回值的空间占用
+
+# go语言编写代码
+```
+func generate(numRows int) [][]int {
+    ans:=make([][]int ,numRows)
+    for i:=range ans{
+        ans[i] = make([]int,i+1)
+        ans[i][0] =1
+        ans[i][i]=1
+        for j:=1;j<i;j++{
+            ans[i][j] = ans[i-1][j] +ans[i-1][j-1]
+        }
+    }
+    return ans
+}
+```
