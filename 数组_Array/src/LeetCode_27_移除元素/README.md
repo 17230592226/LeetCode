@@ -74,3 +74,21 @@ public int removeElement(int[] nums, int val) {
 # 复杂度
 时间复杂度O(n)<br>
 空间复杂度O(1)
+
+# go
+```
+func removeElement(nums []int, val int) int {
+    dst,fast:=0,0
+    for fast<len(nums){
+        if val!=nums[fast]{
+            nums[dst]=nums[fast]
+            dst++
+            fast++
+        }else{
+            fast++
+        }
+
+    }
+    return dst
+}
+```
