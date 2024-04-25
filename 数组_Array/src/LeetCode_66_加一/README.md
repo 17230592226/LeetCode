@@ -92,3 +92,20 @@ class Solution {
 # 时间复杂度
 时间复杂度：O(n)<br>
 空间复杂度：O(1) 最坏为 O(n)
+
+# go
+```
+func plusOne(digits []int) []int {
+    for i:=len(digits)-1;i>=0;i--{
+        if digits[i]<9{
+            digits[i] +=1
+            return digits
+        }else{
+            digits[i]=0
+        }
+    }
+    digits=make([]int,len(digits)+1)
+    digits[0] =1
+    return digits
+}
+```
