@@ -81,3 +81,29 @@ public:
 # 复杂度
 时间复杂度：只移动了m+n次，因此复杂度为O(m+n)。
 空间复杂度：没有开辟新的空间。
+
+# go
+```
+func merge(nums1 []int, m int, nums2 []int, n int)  {
+    i,j:=m-1,n-1
+    z:=m+n-1
+    for i>=0 && j>=0{
+        if nums2[j] > nums1[i]{
+            nums1[z] = nums2[j]
+            j--
+            z--
+        }else{
+            nums1[z] = nums1[i]
+            i--
+            z--
+        }
+    } 
+    for j>=0{    
+        nums1[z]=nums2[j]
+         j--
+         z--
+        
+    }
+
+}
+```
