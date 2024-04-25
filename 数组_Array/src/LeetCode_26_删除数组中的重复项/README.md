@@ -74,3 +74,21 @@ public int removeDuplicates(int[] nums) {
 # 复杂度分析
 时间复杂度：O(n)，其中 n 是数组的长度。快指针和慢指针最多各移动 n 次。</br>
 空间复杂度：O(1)。只需要使用常数的额外空间。
+
+## go
+```
+func removeDuplicates(nums []int) int {
+    if len(nums)==1{
+        return 1;
+    }
+    low , fast :=0,1
+    for fast<len(nums){
+        if nums[low]!=nums[fast]{
+            low++
+            nums[low]=nums[fast]
+        }
+        fast++
+    }
+    return low+1
+}
+```
