@@ -55,6 +55,7 @@ public:
 }
 };
 ```
+这个组合数就是杨辉三角，rowIndex是n，i是m
 ![314821fd421229066953c15e8d8f247](https://github.com/17230592226/LeetCode/assets/57279736/14ff7ad4-92a4-4bcf-9352-bcd54a7ef83d)
 ![image](https://github.com/17230592226/LeetCode/assets/57279736/fdff9a3a-c181-4fb5-9dca-4fb6dcfd23c0)
 
