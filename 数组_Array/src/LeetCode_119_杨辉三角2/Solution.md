@@ -39,6 +39,24 @@ public:
 # 复杂度：
 - 时间复杂度：时间复杂度：O(rowIndex^2)
 - 空间复杂度：O(1)。不考虑返回值的空间占用
+## 线性递推
+![image](https://github.com/17230592226/LeetCode/assets/57279736/a9aa5efb-0611-4138-9b74-d896ced67ec9)
+
+```
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+       vector<int> row(rowIndex+1);
+       row[0]=1;
+       for(int i=1;i<=rowIndex;i++){
+        row[i] = 1LL * row[i-1]* (rowIndex-i+1)/i;
+       }
+       return row;
+}
+};
+```
+![314821fd421229066953c15e8d8f247](https://github.com/17230592226/LeetCode/assets/57279736/14ff7ad4-92a4-4bcf-9352-bcd54a7ef83d)
+![image](https://github.com/17230592226/LeetCode/assets/57279736/fdff9a3a-c181-4fb5-9dca-4fb6dcfd23c0)
 
 # go代码
 ## 递推
@@ -56,4 +74,14 @@ func getRow(rowIndex int) []int {
     return res[rowIndex]
 }
 ```
+## 线性递推
+```
+func getRow(rowIndex int) []int {
+    row := make([]int, rowIndex+1)
+    row[0] = 1
+    for i := 1; i <= rowIndex; i++ {
+        row[i] = row[i-1] * (rowIndex - i + 1) / i
+    }
+    return row
+}
 ```
