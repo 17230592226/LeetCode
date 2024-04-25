@@ -65,6 +65,7 @@ public:
 
 
 # go
+```
 func threeSum(nums []int) [][]int {
     n :=len(nums)
     sort.Ints(nums)
@@ -93,3 +94,4 @@ func threeSum(nums []int) [][]int {
     }
     return ans
 }
+```
