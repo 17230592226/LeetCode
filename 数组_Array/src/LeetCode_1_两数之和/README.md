@@ -54,3 +54,17 @@ class Solution {
 ![image](https://github.com/17230592226/LeetCode/assets/57279736/e80652b7-0f2b-4eca-b91d-8908e59710ed)
 ![image](https://github.com/17230592226/LeetCode/assets/57279736/6fccc280-3ed2-4d1a-a5bf-7813f035d4a6)
 
+# go
+```
+func twoSum(nums []int, target int) []int {
+    hashTable:=map[int]int{}
+    for i,x:=range nums{
+        if p,ok:=hashTable[target-x];ok{
+            return []int{p,i}
+        }
+        hashTable[x] = i
+    }
+    return nil
+}
+```
+
