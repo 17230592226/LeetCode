@@ -35,6 +35,7 @@ public:
 ![image](https://github.com/17230592226/LeetCode/assets/57279736/c9d2bcab-2526-4c7c-a9f2-545ef0f789b8)
 
 # go
+```
 var map1 = map[byte]int{'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
 func romanToInt(s string) (ans int) {
     n:=len(s)
@@ -48,3 +49,4 @@ func romanToInt(s string) (ans int) {
     }
     return 
 }
+```
