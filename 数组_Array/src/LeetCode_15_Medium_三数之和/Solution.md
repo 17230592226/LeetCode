@@ -44,8 +44,9 @@ public:
                 while(second<third && nums[second] + nums[third]>target){
                     third--;
                 }
+    //(这意味着之后的second与任何一个second都是要大于target的，因此直接弹出)
                 if(second == third){
-                    continue;
+                    break;
                 }
                 if(nums[second] + nums[third]==target){
                     ans.push_back({nums[first],nums[second],nums[third]});
@@ -61,3 +62,34 @@ public:
 2. first、second、third只需要在特定下允许first、second、third重复一次，其他的不允许重复。
 3. 根据第一个元素可以，知道第二个和第三个元素之和，以此减少一层循环。
  ![image](https://github.com/17230592226/LeetCode/assets/57279736/dc008a8c-ecec-4328-8454-e8b084f7d6bf)
+
+
+# go
+func threeSum(nums []int) [][]int {
+    n :=len(nums)
+    sort.Ints(nums)
+    ans:=make([][]int ,0)
+
+    for first:=0;first<n;first++{
+        if first>0 && nums[first] == nums[first-1]{
+            continue
+        }
+        thrid := n-1
+        target:=-nums[first]
+        for second := first+1;second<n;second++{
+            if second>first+1 && nums[second]==nums[second-1]{
+                continue
+            }
+            for second < thrid && nums[second] +nums[thrid] > target{
+                thrid--;
+            }
+            if second==thrid{
+                break
+            }
+            if nums[second] +nums[thrid] == target{
+                ans = append(ans,[]int{nums[first],nums[second],nums[thrid]})
+            }
+        }
+    }
+    return ans
+}
