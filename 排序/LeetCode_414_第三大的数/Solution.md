@@ -53,3 +53,19 @@ public:
 # 复杂度
 - 时间复杂度：，O(n)，其中 n 是数组 nums 的长度。由于有序集合的大小至多为 3，插入和删除的时间复杂度可以视作是 O(1) 的，因此时间复杂度为 O(n)。
 - 空间复杂度：O(1))。
+
+# go语言
+```
+func thirdMax(nums []int) int {
+    sort.Sort(sort.Reverse(sort.IntSlice(nums)))
+    for i,diff:=1,1;i<len(nums);i++{
+        if nums[i]!=nums[i-1]{
+            diff++
+            if diff==3{
+                return nums[i]
+            }
+        }
+    }
+    return nums[0]
+}
+```
