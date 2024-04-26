@@ -47,3 +47,29 @@ public:
 # 复杂度
 - 时间复杂度：O(n)
 - 空间复杂度：O(n)
+
+# go 语言
+```
+func intersection(nums1 []int, nums2 []int) []int {
+    var  res []int
+    set1:= map[int]struct{}{}
+    set2:=map[int]struct{}{}
+    for _,v :=range nums1{
+        set1[v] = struct{}{}
+    }
+    for _,v:=range nums2{
+        set2[v] = struct{}{}
+    }
+    if len(set1) >len(set2){
+        set1,set2=set2,set1
+    }
+ //set的遍历 第一个返回值map 的键，第二个返回值是 map 的值
+    for _,v:=range set1{
+      //判断它的键有没有这个 v 这个值
+        if _,has:=set2[v];has{
+            res = append(res,v)
+        }
+    }
+    return res
+
+```
