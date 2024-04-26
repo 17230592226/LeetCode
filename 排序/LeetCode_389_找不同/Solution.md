@@ -47,3 +47,38 @@ public:
 # 复杂度
 - 时间复杂度：O(n)
 - 空间复杂度：O(n)
+
+# go语言
+```
+func findTheDifference(s string, t string) byte {
+    map1:=map[int]int{}
+    for _,v:=range s{
+        map1[int(v-'a')]+=1
+    }
+    for _,v :=range t{
+        map1[int(v-'a')]--
+        if map1[int(v-'a')] < 0{
+            return byte(v)
+        }
+    }
+    return 'a'
+    
+}
+```
+- 注意for i := 0; ; i++ 中没有明确结束点，因此只在循环内进行返回就行，然而上面这个代码，需要额外的在for循环之外加入return 返回值
+```
+func findTheDifference(s, t string) byte {
+    cnt := [26]int{}
+    for _, ch := range s {
+        cnt[ch-'a']++
+    }
+    for i := 0; ; i++ {
+        ch := t[i]
+        cnt[ch-'a']--
+        if cnt[ch-'a'] < 0 {
+            return ch
+        }
+    }
+}
+
+```
