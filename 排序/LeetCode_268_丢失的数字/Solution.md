@@ -116,4 +116,19 @@ public:
 ```
 ![image](https://github.com/17230592226/LeetCode/assets/57279736/2dde327f-bb20-4a00-920b-f6dd2890e8cc)
 
+# go 语言
+```
+func missingNumber(nums []int) int {
+has := map[int]bool{}
+    for _, v := range nums {
+        has[v] = true
+    }
+    for i := 0; ; i++ {
+        if _,ok:= has[i]; !ok{
+            return i
+        }
+    }
+}
+```
+
 
