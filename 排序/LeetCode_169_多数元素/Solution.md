@@ -138,3 +138,21 @@ public:
 ## 复杂度
 - 时间复杂度：O(n)。Boyer-Moore 算法只对数组进行了一次遍历。
 - 空间复杂度：空间复杂度：O(1⁡n)。Boyer-Moore 算法只需要常数级别的额外空间。
+
+# go
+## 哈希
+```
+func majorityElement(nums []int) int {
+    map1:= map[int]int{}
+    majority :=nums[0]
+    cnt :=0
+    for _,v :=range(nums){
+        map1[v]++
+        if(map1[v]>cnt){
+            cnt = map1[v]
+            majority = v
+        }
+    }
+    return majority
+}
+```
