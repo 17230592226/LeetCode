@@ -60,3 +60,17 @@ public:
 # 复杂度
 - 时间复杂度：O(nlongn)
 - 空间复杂度：O(logn)
+
+# go
+```
+func containsDuplicate(nums []int) bool {
+    map1:=map[int]int{}
+    for _,v :=range nums{
+        map1[v]++
+        if map1[v]==2{
+            return true
+        }
+    }
+    return false
+}
+```
