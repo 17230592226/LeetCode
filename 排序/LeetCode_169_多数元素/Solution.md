@@ -125,7 +125,7 @@ public:
 
        for(int num : nums){
         if(num == candidate) count++;
-        else if (count == 0){
+        else if (--count < 0){
             candidate = num;
             count = 1;
         }
@@ -154,5 +154,23 @@ func majorityElement(nums []int) int {
         }
     }
     return majority
+}
+```
+
+```
+func majorityElement(nums []int) int {
+    candidate ,count:=-1,0
+    for _,num :=range nums{
+        if num ==candidate{
+            count++
+        }else{
+            count--
+            if count<0{
+            candidate = num
+            count=1
+        }
+        } 
+    }
+    return candidate
 }
 ```
