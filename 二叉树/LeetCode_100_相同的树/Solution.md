@@ -123,3 +123,27 @@ public:
 - 时间复杂度：O(min⁡(m,n))，其中 m 和 n 分别是两个二叉树的节点数。对两个二叉树同时进行广度优先搜索，只有当两个二叉树中的对应节点都不为空时才会访问到该节点，因此被访问到的节点数不会超过较小的二叉树的节点数。
 - 空间复杂度：O(min⁡(m,n))，其中 m 和 n 分别是两个二叉树的节点数。空间复杂度取决于队列中的元素个数，队列中的元素个数不会超过较小的二叉树的节点数。
 
+# go
+## 深度
+```
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func isSameTree(p *TreeNode, q *TreeNode) bool {
+    if p == nil && q==nil{
+        return true
+    }
+    if p ==nil || q==nil{
+        return false
+    }
+    if p.Val!=q.Val{
+        return false
+    }
+    return isSameTree(p.Left,q.Left) && isSameTree(p.Right,q.Right)
+}
+```
