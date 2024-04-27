@@ -147,3 +147,41 @@ func isSameTree(p *TreeNode, q *TreeNode) bool {
     return isSameTree(p.Left,q.Left) && isSameTree(p.Right,q.Right)
 }
 ```
+## 迭代
+```
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func isSameTree(p *TreeNode, q *TreeNode) bool {
+    Q:=make([]*TreeNode,0)
+    Q = append(Q,p)
+    Q = append(Q,q)
+    for len(Q)>0{
+        p := Q[0]
+        q := Q[1]
+        Q = Q[2:]
+
+        if p==nil && q==nil{
+            continue
+        }
+        if p==nil||q==nil{
+            return false
+        }
+        if p.Val!=q.Val{
+            return false
+        }
+
+        Q=append(Q,p.Left)
+        Q=append(Q,q.Left)
+
+        Q=append(Q,p.Right)
+        Q=append(Q,q.Right)
+    }
+    return true
+}
+```
