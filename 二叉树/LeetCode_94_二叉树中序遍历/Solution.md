@@ -172,7 +172,9 @@ public:
 <br>
 空间复杂度：O(1)。
 
-# go 递归
+# go 
+## 递归
+### 1
 ```
 /**
  * Definition for a binary tree node.
@@ -195,6 +197,30 @@ func inorderTraversal(root *TreeNode) (res []int) {
     inorder(root)
     return 
 }   
+```
+### 2
+```
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func inorderTraversal(root *TreeNode) []int {
+    res:=[]int{}
+    inorder(root, &res)
+    return res
+}   
+func inorder(node *TreeNode,res *[]int) {
+    if node ==nil{
+        return 
+    }
+    inorder(node.Left,res)
+    *res = append(*res, node.Val)
+    inorder(node.Right,res)
+}
 ```
 ## 迭代
 ```
