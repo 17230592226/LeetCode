@@ -102,3 +102,29 @@ public:
 - 时间复杂度：O(n)，其中 n 是数组的长度。每个数字只访问一次。
 - 空间复杂度：O(log⁡n)，其中 nnn 是数组的长度。空间复杂度不考虑返回值，因此空间复杂度主要取决于递归栈的深度，递归栈的深度是 O(log⁡n)。
 
+# go
+```
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func sortedArrayToBST(nums []int) *TreeNode {
+    return create(nums,0,len(nums)-1)
+}
+func create(nums []int ,left int ,right int) *TreeNode{
+    if left>right{
+        return nil
+    }
+    
+    mid:=(left+right)/2
+
+    root:= &TreeNode{Val:nums[mid]}
+    root.Left = create(nums,left,mid-1)
+    root.Right = create(nums,mid+1,right)
+    return root
+}
+```
