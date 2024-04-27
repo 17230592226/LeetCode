@@ -30,7 +30,8 @@
 ​ 
 p 是空节点
 p 是非空节点
-​```
+
+```
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -52,15 +53,10 @@ public:
 
     }
 
-
-
     bool isBalanced(TreeNode* root) {
         if(root == nullptr) return true;
         
-        return abs(height(root -> left) - height(root -> right) ) <= 1 && isBalanced(root -> left) && isBalanced(root -> right); 
-        
-         
-        
+        return abs(height(root -> left) - height(root -> right) ) <= 1 && isBalanced(root -> left) && isBalanced(root -> right);    
     }
 };
 ```
