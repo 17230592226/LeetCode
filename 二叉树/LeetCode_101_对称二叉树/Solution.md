@@ -104,9 +104,9 @@ public:
 - 时间复杂度：O(n)，同「方法一」。
 - 空间复杂度：这里需要用一个队列来维护节点，每个节点最多进队一次，出队一次，队列中最多不会超过 n 个点，故渐进空间复杂度为 O(n)。
 
-- # go
-- ## 递归
-- ```
+# go
+## 递归
+```
   /**
  * Definition for a binary tree node.
  * type TreeNode struct {
@@ -127,4 +127,4 @@ func check(p, q *TreeNode) bool {
 	}
 	return p.Val == q.Val && check(p.Left, q.Right) && check(p.Right, q.Left)
 }
-  ```
+```
