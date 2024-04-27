@@ -128,3 +128,8 @@ func create(nums []int ,left int ,right int) *TreeNode{
     return root
 }
 ```
+
+```
+//选择选择任意一个中间位置数字作为根节点
+mid := (left + right + rand.Intn(2)) / 2
+```
