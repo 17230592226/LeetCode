@@ -108,3 +108,38 @@ if root == nil {
     return max(maxDepth(root.Left), maxDepth(root.Right)) + 1
 }
 ```
+## 广度
+```
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func maxDepth(root *TreeNode) int {
+    if root ==nil{
+        return 0
+    }
+    Q :=[]*TreeNode{root}
+    ans:=0    
+    for len(Q)>0{
+       size := len(Q)
+       for size>0{
+        node :=Q[0]
+        Q = Q[1:]
+
+        if node.Left !=nil{
+            Q = append(Q,node.Left)
+        }
+        if node.Right !=nil{
+            Q = append(Q,node.Right)
+        }
+        size--
+       }
+       ans++
+    }
+    return ans
+}
+```
