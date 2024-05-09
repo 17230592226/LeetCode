@@ -7,7 +7,7 @@ candidates 中的 同一个 数字可以 无限制重复被选取 。如果至�
 
  ![image](https://github.com/17230592226/LeetCode/assets/57279736/42894e4c-3ccc-481f-84b9-4e33301f793d)
 
-# 代码
+# go代码
 ```
 func dfs(candidates []int,res* [][]int,combain* []int ,target int,idx int){
     if idx==len(candidates){
@@ -36,5 +36,32 @@ func combinationSum(candidates []int, target int) [][]int {
     combain:=[]int{}
     dfs(candidates,&res,&combain,target,0)
     return res
+}
+```
+
+# go题解2
+```
+func combinationSum(candidates []int, target int) (ans [][]int) {
+	comb := []int{}
+	var dfs func(target, idx int)
+	dfs = func(target, idx int) {
+		if idx == len(candidates) {
+			return
+		}
+		if target == 0 {
+			ans = append(ans, append([]int(nil), comb...))
+			return
+		}
+		// 直接跳过
+		dfs(target, idx+1)
+		// 选择当前数
+		if target-candidates[idx] >= 0 {
+			comb = append(comb, candidates[idx])
+			dfs(target-candidates[idx], idx)
+			comb = comb[:len(comb)-1]
+		}
+	}
+	dfs(target, 0)
+	return
 }
 ```
