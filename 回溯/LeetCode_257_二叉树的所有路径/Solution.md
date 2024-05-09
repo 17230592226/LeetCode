@@ -104,3 +104,37 @@ public:
 # 复杂度
 
 ![image](https://github.com/17230592226/LeetCode/assets/57279736/cc08df80-29ad-4a34-9adf-9ecd5207eda7)
+
+# go 解法1：深度
+```
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+
+
+func xianxu(root *TreeNode,res *[]string,s string){
+    if root == nil{
+        return ;
+    }
+    s+=strconv.Itoa(root.Val)
+    if(root.Left == nil && root.Right == nil){
+        *res = append(*res,s)
+    }
+    s+="->"
+    xianxu(root.Left,res,s)
+    xianxu(root.Right,res,s)
+
+}
+
+func binaryTreePaths(root *TreeNode) []string {
+    res:=[]string{}
+    s:=""
+    xianxu(root,&res,s)
+    return res
+}
+```
