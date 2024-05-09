@@ -138,3 +138,48 @@ func binaryTreePaths(root *TreeNode) []string {
     return res
 }
 ```
+# go 解法2：广度
+```
+/**
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func binaryTreePaths(root *TreeNode) []string {
+    paths:=[]string{}
+    if root ==nil{
+        return paths
+    }
+    nodeQueue :=[]*TreeNode{}
+    pathQueue:= []string{}
+
+    nodeQueue = append(nodeQueue,root)
+    pathQueue = append(pathQueue,strconv.Itoa(root.Val))
+
+    for len(nodeQueue)>0{
+        node := nodeQueue[0]
+        path :=pathQueue[0]
+
+        nodeQueue = nodeQueue[1:]
+        pathQueue = pathQueue[1:]
+
+        if node.Left ==nil && node.Right == nil{
+            paths = append(paths,path)
+        }else{
+            if node.Left != nil{
+                nodeQueue = append(nodeQueue,node.Left)
+                pathQueue = append(pathQueue,path+"->"+strconv.Itoa(node.Left.Val))
+            }
+            if node.Right != nil{
+                nodeQueue = append(nodeQueue,node.Right)
+                pathQueue = append(pathQueue,path+"->"+strconv.Itoa(node.Right.Val))
+            }
+        }
+
+    }
+    return paths
+}
+```
