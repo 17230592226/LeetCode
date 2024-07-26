@@ -49,3 +49,31 @@ func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
  ## 复杂度
  - 时间复杂度：O(n+m)，其中 n 为 list 1的长度，m 为 list 2的长度。
  - 空间复杂度：O(1)。仅用到若干额外变量。
+
+## 代码
+```
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+  if list1 == nil{
+    return list2
+  }
+  if list2 == nil{
+    return list1
+  }
+  if list1.Val < list2.Val{
+    list1.Next = mergeTwoLists(list1.Next,list2)
+    return list1
+  }
+  list2.Next = mergeTwoLists(list1,list2.Next)
+  return list2
+}
+```
+ ## 复杂度
+ - 时间复杂度：O(n+m)，其中 n 为 list 1的长度，m 为 list 2的长度。
+ - 空间复杂度：O(n+m)。递归需要 O(n+m) 的栈空间
