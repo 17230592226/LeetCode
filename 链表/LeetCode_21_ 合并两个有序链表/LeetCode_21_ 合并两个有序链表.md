@@ -25,6 +25,7 @@ l1 和 l2 均按 非递减顺序 排列
  * }
  */
 func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+//一个指向新`ListNode`实例的指针,与`var prev *ListNode`不同，没有为`prev`分配内存，它是一个空指针（`nil`）。
     dummy := &ListNode{}
     cur := dummy
     for list1 != nil && list2 != nil{
