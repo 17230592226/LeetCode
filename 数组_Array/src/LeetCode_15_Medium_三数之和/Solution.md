@@ -21,8 +21,13 @@ for first = 0 .. n-1
                         // 判断是否有 a+b+c==0
                         check(first, second, third)
 
-//注意：first == 0 确保例如（-1,-1,-1,2）中只有在开头中，前两个（-1,-1）的不重复，中间的（-1，-1）遇到nums[first] != nums[first-1]则跳过，即之后的与first相同的直接跳过。
-//second == first+1 确保 first和second可以连续一次，之后的与second的直接跳过
+//注意：可以发现，如果我们固定了前两重循环枚举到的元素 a 和 b，那么只有唯一的 c 满足 a+b+c=0。当第二重循环往后枚举一个元素 b′时，由于 b′>b，那么满足 a+b′+c′=0 的 c′一定有 c ′<c，即 c ′在数组中一定出现在 c 的左侧。也就是说，我们可以从小到大枚举 b，同时从大到小枚举 c，即第二重循环和第三重循环实际上是并列的关系。
+//我们就可以保持第二重循环不变，而将第三重循环变成一个从数组最右端开始向左移动的指针
+
+作者：力扣官方题解
+链接：https://leetcode.cn/problems/3sum/solutions/284681/san-shu-zhi-he-by-leetcode-solution/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 class Solution {
 public:
